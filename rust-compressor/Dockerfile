@@ -1,4 +1,5 @@
-FROM rust:latest AS builder
+FROM rust:1.74-slim as builder
+
 
 WORKDIR /usr/src/app
 COPY . .
