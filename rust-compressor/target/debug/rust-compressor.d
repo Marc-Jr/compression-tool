@@ -1,1 +1,0 @@
-/Users/gisstudent/Projects/compression-tool/rust-compressor/target/debug/rust-compressor: /Users/gisstudent/Projects/compression-tool/rust-compressor/src/lib.rs /Users/gisstudent/Projects/compression-tool/rust-compressor/src/main.rs
