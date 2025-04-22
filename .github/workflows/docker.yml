@@ -48,10 +48,11 @@ jobs:
         id: prep
         run: echo "REPO_OWNER_LC=${GITHUB_REPOSITORY_OWNER,,}" >> $GITHUB_ENV
 
+      # Build and Push Docker Image (already included inside the matrix context)
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v5
         with:
-          context: ${{ matrix.image.context }}
-          file: ${{ matrix.image.dockerfile }}
+          context: ${{ matrix.image.context }}  # Use context from matrix
+          file: ${{ matrix.image.dockerfile }}  # Path to the Dockerfile from matrix
           push: true
           tags: ghcr.io/${{ env.REPO_OWNER_LC }}/${{ matrix.image.name }}:latest

@@ -2,16 +2,18 @@ FROM rust:1.74-slim AS builder
 
 WORKDIR /usr/src/app
 
-# Copy only the necessary files for building
-COPY rust-compressor/Cargo.toml rust-compressor/Cargo.lock ./
-COPY rust-compressor/src ./src
+COPY Cargo.toml Cargo.lock ./
+
+COPY src ./src
 
 RUN cargo build --release
 
-FROM debian:bullseye-slim
+FROM debian:bullseye-slim AS runtime
 
 WORKDIR /app
 
-COPY --from=builder /usr/src/app/target/release/rust-compressor .
+RUN apt-get update && apt-get install -y libssl-dev
 
-CMD ["./rust-compressor"]
+COPY --from=builder /usr/src/app/target/release/rust-compressor /usr/local/bin/rust-compressor
+
+ENTRYPOINT ["/usr/local/bin/rust-compressor"]
