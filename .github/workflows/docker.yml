@@ -42,17 +42,16 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.GHCR_TOKEN }}  # Use the PAT stored as GHCR_TOKEN
 
       - name: Convert repo owner to lowercase
         id: prep
         run: echo "REPO_OWNER_LC=${GITHUB_REPOSITORY_OWNER,,}" >> $GITHUB_ENV
 
-      # Build and Push Docker Image (already included inside the matrix context)
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v5
         with:
-          context: ${{ matrix.image.context }}  # Use context from matrix
-          file: ${{ matrix.image.dockerfile }}  # Path to the Dockerfile from matrix
+          context: ${{ matrix.image.context }}
+          file: ${{ matrix.image.dockerfile }}
           push: true
           tags: ghcr.io/${{ env.REPO_OWNER_LC }}/${{ matrix.image.name }}:latest
