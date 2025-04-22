@@ -1,10 +1,10 @@
-# 🧰 Compression Tool
+# Compression Tool
 
 A command-line tool for compressing and decompressing files using **Run-Length Encoding (RLE)** and **LZ77** algorithms. Built with Rust and JavaScript, this tool is designed for efficiency and ease of use.
 
 ---
 
-## 🚀 Features
+## Features
 
 - **Compression**: Reduce file sizes using RLE or LZ77 algorithms.
 - **Decompression**: Restore original files from compressed formats.
@@ -13,7 +13,7 @@ A command-line tool for compressing and decompressing files using **Run-Length E
 
 ---
 
-## 📦 Installation
+##  Installation
 
 ### Option 1: Using Docker (No Installation Required)
 
@@ -64,7 +64,7 @@ docker run -v $(pwd):/data rust-compressor decompress /data/output.cmp /data/out
 
 ---
 
-## 🧪 Benchmarking
+## Benchmarking
 
 To test the performance of the compression and decompression:
 
