@@ -1,13 +1,17 @@
-FROM rust:1.74-slim as builder
-
+FROM rust:1.74-slim AS builder
 
 WORKDIR /usr/src/app
-COPY . . 
+
+# Copy only the necessary files for building
+COPY rust-compressor/Cargo.toml rust-compressor/Cargo.lock ./
+COPY rust-compressor/src ./src
 
 RUN cargo build --release
 
 FROM debian:bullseye-slim
 
-COPY --from=builder /usr/src/app/target/release/rust-compressor /usr/local/bin/rust-compressor
+WORKDIR /app
 
-CMD ["rust-compressor"]
+COPY --from=builder /usr/src/app/target/release/rust-compressor .
+
+CMD ["./rust-compressor"]
