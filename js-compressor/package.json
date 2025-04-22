@@ -1,0 +1,17 @@
+{
+  "name": "js-compressor",
+  "version": "1.0.0",
+  "description": "CLI compression tool using RLE and LZ algorithms",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "mocha test/*.test.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "assert": "^2.1.0"
+  },
+  "devDependencies": {
+    "mocha": "^11.1.0"
+  }
+}
