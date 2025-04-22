@@ -13,7 +13,13 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        image: [rust-compressor, js-compressor]
+        image:
+          - name: rust-compressor
+            context: rust-compressor
+            dockerfile: rust-compressor/Dockerfile
+          - name: js-compressor
+            context: js-compressor
+            dockerfile: js-compressor/Dockerfile
       fail-fast: false
 
     steps:
@@ -45,7 +51,7 @@ jobs:
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v5
         with:
-          context: ${{ matrix.image }}
-          file: ${{ matrix.image }}/Dockerfile
+          context: ${{ matrix.image.context }}
+          file: ${{ matrix.image.dockerfile }}
           push: true
-          tags: ghcr.io/${{ env.REPO_OWNER_LC }}/${{ matrix.image }}:latest
+          tags: ghcr.io/${{ env.REPO_OWNER_LC }}/${{ matrix.image.name }}:latest
