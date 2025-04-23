@@ -1,29 +1,28 @@
+
 # Compression Tool
 
-A command-line tool for compressing and decompressing files using **Run-Length Encoding (RLE)** and **LZ77** algorithms. Built with Rust and JavaScript, this tool is designed for efficiency and ease of use.
+A command-line utility for compressing and decompressing files using **Run-Length Encoding (RLE)** and **LZ77** algorithms. Built with **Rust** and **JavaScript**, this tool is designed for efficiency, cross-platform use, and educational clarity.
 
 ---
 
 ## Features
 
-- **Compression**: Reduce file sizes using RLE or LZ77 algorithms.
-- **Decompression**: Restore original files from compressed formats.
-- **Docker Support**: Run without installation using Docker.
-- **Cross-Platform**: Compatible with Linux, macOS, and Windows.
+- **Compression & Decompression**: Supports RLE and LZ77.
+- **Dual Implementation**: Built in both Rust (performance) and JavaScript (portability).
+- **Docker Support**: No local setup needed—just run in a container.
+- **Cross-Platform**: Works on Linux, macOS, and Windows.
 
 ---
 
-##  Installation
+## Installation
 
-### Option 1: Using Docker (No Installation Required)
+### Option 1: Use Docker (No Rust or Node setup required)
 
 ```bash
 docker run -v $(pwd):/data rust-compressor compress /data/input.txt /data/output.cmp --rle
 ```
 
-Replace `input.txt` with your file and `output.cmp` with your desired output file name.
-
-### Option 2: Building from Source
+### Option 2: Build from Source
 
 1. Clone the repository:
 
@@ -39,7 +38,7 @@ Replace `input.txt` with your file and `output.cmp` with your desired output fil
    docker build -t rust-compressor .
    ```
 
-3. Build the JavaScript compressor:
+3. Set up the JavaScript compressor:
 
    ```bash
    cd ../js-compressor
@@ -48,27 +47,59 @@ Replace `input.txt` with your file and `output.cmp` with your desired output fil
 
 ---
 
-## 🛠️ Usage
+## Usage
 
 ### Compress a File
+
+#### 🐳 Using Docker (Rust):
 
 ```bash
 docker run -v $(pwd):/data rust-compressor compress /data/input.txt /data/output.cmp --rle
 ```
 
+#### 🦀 Using Rust Locally:
+
+```bash
+# In the rust-compressor directory
+cargo run -- compress input.txt output.cmp --rle
+```
+
+#### Using JavaScript (Node.js):
+
+```bash
+# In the js-compressor directory
+node compress.js input.txt output.cmp --rle
+```
+
+---
+
 ### Decompress a File
+
+#### 🐳 Using Docker (Rust):
 
 ```bash
 docker run -v $(pwd):/data rust-compressor decompress /data/output.cmp /data/output.txt --rle
+```
+
+#### 🦀 Using Rust Locally:
+
+```bash
+cargo run -- decompress output.cmp output.txt --rle
+```
+
+#### Using JavaScript (Node.js):
+
+```bash
+node decompress.js output.cmp output.txt --rle
 ```
 
 ---
 
 ## Benchmarking
 
-To test the performance of the compression and decompression:
+To test compression speed and effectiveness:
 
-1. Create a sample text file:
+1. Create a test file:
 
    ```bash
    echo "Sample text for compression testing." > test.txt
@@ -81,8 +112,18 @@ To test the performance of the compression and decompression:
    ./benchmark.sh
    ```
 
-This will display the compression and decompression times and file sizes.
+---
+
+## 📚 Learning Resources
+
+- [Run-Length Encoding (RLE)](https://en.wikipedia.org/wiki/Run-length_encoding)
+- [LZ77 Compression Algorithm](https://en.wikipedia.org/wiki/LZ77_and_LZ78_algorithms)
 
 ---
 
+## 🤝 Contributing
+
+Open to improvements! Fork the repo, submit issues, or create a pull request.
+
+---
 
